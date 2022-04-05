@@ -16,11 +16,10 @@ const Header = () => {
         <h3
           css={css`
             margin: 0;
-            padding-top: 10px;
-            padding-bottom: 10px;
+            padding-top: 15px;
+            padding-bottom: 15px;
             font-size: 22px;
             font-weight: 450;
-            line-height: 35px;
             word-break: keep-all;
             text-align: center;
           `}
@@ -31,7 +30,7 @@ const Header = () => {
           css={css`
             display: flex;
             justify-content: start;
-            padding: 5px 0 5px 7px;
+            padding: 10px 0 10px 7px;
           `}
         >
           <Button>검색 🔎</Button>
