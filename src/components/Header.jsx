@@ -1,4 +1,5 @@
-import { css } from "@emotion/react";
+import { css } from '@emotion/react';
+import Button from 'components/Button';
 
 const Header = () => {
   return (
@@ -9,36 +10,36 @@ const Header = () => {
           left: 0%;
           right: 0%;
           top: 0%;
-          bottom: 0%;
-          background-color: #ffffff;
+          background: #ffffff;
         `}
       >
-        MUSINSA
-      </header>
-      <div
-        css={css`
-          position: absolute;
-          width: 375px;
-          height: 55px;
-          left: 0px;
-          top: 50px;
-          background-color: #ffffff;
-        `}
-      >
-        <button
+        <h3
           css={css`
-            display: flex;
-            flex-direction: row;
-            align-items: flex-start;
-            padding: 7px 11px 7px 15px;
+            margin: 0;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            font-size: 22px;
+            font-weight: 450;
+            line-height: 35px;
+            word-break: keep-all;
+            text-align: center;
           `}
         >
-          검색 🔎
-        </button>
-        <button>세일상품</button>
-        <button>단독상품</button>
-        <button>품절포함</button>
-      </div>
+          MUSINSA
+        </h3>
+        <div
+          css={css`
+            display: flex;
+            justify-content: start;
+            padding: 5px 0 5px 7px;
+          `}
+        >
+          <Button>검색 🔎</Button>
+          <Button>세일상품</Button>
+          <Button>단독상품</Button>
+          <Button>품절포함</Button>
+        </div>
+      </header>
     </>
   );
 };
