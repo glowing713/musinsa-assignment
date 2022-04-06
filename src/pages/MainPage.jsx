@@ -1,11 +1,15 @@
 import Header from 'components/Header';
 import { css } from '@emotion/react';
 import colors from 'constants/colors';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const MainPage = () => {
   const [searchOpened, setSearchOpened] = useState(false);
   const [toggledBtns, setToggledBtns] = useState([]); // 활성화된 토글 버튼들
+
+  useEffect(() => {
+    console.log(toggledBtns);
+  });
 
   return (
     <>

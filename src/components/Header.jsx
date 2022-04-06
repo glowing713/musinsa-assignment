@@ -85,7 +85,7 @@ const Header = ({ toggledBtns, setToggledBtns, searchOpened, setSearchOpened }) 
           placeholder={'🔎  상품명 검색'}
           value={searchKeyword}
           onChange={e => setSearchKeyword(e.target.value)}
-          onKeyDown={e => addSearchKeyword(e, toggledBtns, setToggledBtns)}
+          onKeyDown={e => addSearchKeyword(e, toggledBtns, setToggledBtns, setSearchOpened, setSearchKeyword)}
           css={css`
             border: 1px solid;
             border-color: ${colors.gray};
@@ -113,11 +113,14 @@ const clickHandler = (event, toggledBtns, setToggledBtns) => {
   setToggledBtns(newState);
 };
 
-const addSearchKeyword = (event, toggledBtns, setToggledBtns) => {
+const addSearchKeyword = (event, toggledBtns, setToggledBtns, setSearchOpened, setSearchKeyword) => {
   const inputStr = event.target.value.trim();
   const pressedKey = event.key;
   if (inputStr && pressedKey === 'Enter') {
+    // 엔터를 누르면 필터 목록에 추가되고, 입력창이 비워지고 사라진다.
     setToggledBtns([...toggledBtns, inputStr]);
+    setSearchKeyword('');
+    setSearchOpened(false);
   }
 };
 
