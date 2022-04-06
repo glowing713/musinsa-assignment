@@ -76,7 +76,7 @@ const Header = ({ toggledBtns, setToggledBtns, searchOpened, setSearchOpened }) 
           display: ${searchOpened ? 'flex' : 'none'};
           align-items: center;
           justify-contents: center;
-          height: 80px;
+          height: 70px;
           background-color: ${colors.lightgray};
         `}
       >
@@ -89,8 +89,9 @@ const Header = ({ toggledBtns, setToggledBtns, searchOpened, setSearchOpened }) 
           css={css`
             border: 1px solid;
             border-color: ${colors.gray};
-            font-size: 17px;
+            font-size: 14px;
             margin: 20px 15px;
+            height: 22px;
           `}
         />
       </div>
