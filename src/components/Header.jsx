@@ -2,11 +2,15 @@ import { css } from '@emotion/react';
 import Button from 'components/Button';
 import Input from 'components/Input';
 import colors from 'constants/colors';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const Header = ({ filters, setFilters, searchOpened, setSearchOpened }) => {
   const btnNames = { search: '검색 🔎', onSale: '세일상품', exclusive: '단독상품', soldOut: '품절포함' };
   const [searchKeyword, setSearchKeyword] = useState('');
+
+  useEffect(() => {
+    console.log(filters);
+  }, [filters]);
 
   return (
     <header
@@ -91,6 +95,48 @@ const Header = ({ filters, setFilters, searchOpened, setSearchOpened }) => {
             height: 22px;
           `}
         />
+      </div>
+      <div
+        css={css`
+          display: ${filters.length > 0 ? 'flex' : 'none'};
+          height: 50px;
+          align-items: center;
+          padding: 0 10px;
+        `}
+      >
+        {filters.map(txt => (
+          <Button
+            css={css`
+              border-radius: 6px;
+              width: auto;
+              height: 30px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              font-size: 11px;
+              margin: 0 10px 8px 0;
+              color: ${colors.white};
+              background-color: ${colors.blue};
+              padding: 5px 10px;
+            `}
+            onClick={e =>
+              setFilters(prev => {
+                const newOne = [...prev];
+                newOne.splice(prev.indexOf(txt), 1);
+                return newOne;
+              })
+            }
+          >
+            <span
+              css={css`
+                margin-right: 6px;
+              `}
+            >
+              {txt}
+            </span>
+            <span>X</span>
+          </Button>
+        ))}
       </div>
     </header>
   );

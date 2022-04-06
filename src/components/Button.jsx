@@ -17,7 +17,7 @@ const Button = ({ children, active, ...rest }) => {
       `}
       {...rest}
     >
-      <span>{children}</span>
+      {children}
     </button>
   );
 };
