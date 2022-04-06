@@ -72,12 +72,12 @@ const Header = ({ toggledBtns, setToggledBtns, searchOpened, setSearchOpened }) 
       </div>
       <div
         css={css`
-          background-color: ${colors.grey};
+          background-color: ${colors.gray};
           display: ${searchOpened ? 'flex' : 'none'};
           align-items: center;
           justify-contents: center;
           height: 80px;
-          background-color: ${colors.lightgrey};
+          background-color: ${colors.lightgray};
         `}
       >
         <SearchBar
@@ -88,7 +88,7 @@ const Header = ({ toggledBtns, setToggledBtns, searchOpened, setSearchOpened }) 
           onKeyDown={e => addSearchKeyword(e, toggledBtns, setToggledBtns)}
           css={css`
             border: 1px solid;
-            border-color: ${colors.grey};
+            border-color: ${colors.gray};
             font-size: 17px;
             margin: 20px 15px;
           `}

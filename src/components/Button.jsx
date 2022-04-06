@@ -11,7 +11,7 @@ const Button = ({ children, active, ...rest }) => {
         padding: 7px 15px;
         background-color: ${backgroundColor};
         color: ${txtColor};
-        border: 1px solid ${colors.grey};
+        border: 1px solid ${colors.gray};
         border-radius: 25px;
         margin-right: 5px;
       `}

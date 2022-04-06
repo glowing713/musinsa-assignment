@@ -19,7 +19,7 @@ const MainPage = () => {
         css={css`
           margin-top: ${searchOpened ? '160px' : '110px'};
           padding-top: 10px;
-          background-color: ${colors.grey};
+          background-color: ${colors.gray};
           display: grid;
           grid-template-columns: repeat(2, 1fr);
           grid-auto-rows: minmax(366px, auto);
