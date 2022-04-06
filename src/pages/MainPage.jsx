@@ -5,13 +5,19 @@ import { useState } from 'react';
 
 const MainPage = () => {
   const [searchOpened, setSearchOpened] = useState(false);
+  const [toggledBtns, setToggledBtns] = useState([]); // 활성화된 토글 버튼들
 
   return (
     <>
-      <Header />
+      <Header
+        toggledBtns={toggledBtns}
+        setToggledBtns={setToggledBtns}
+        searchOpened={searchOpened}
+        setSearchOpened={setSearchOpened}
+      />
       <div
         css={css`
-          margin-top: ${searchOpened ? '190px' : '110px'};
+          margin-top: ${searchOpened ? '160px' : '110px'};
           padding-top: 10px;
           background-color: ${colors.grey};
           display: grid;
