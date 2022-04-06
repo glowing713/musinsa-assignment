@@ -5,6 +5,7 @@ import colors from 'constants/colors';
 import { useCallback, useRef, useState } from 'react';
 import useProductSearch from 'hooks/useProductSearch';
 import { Oval } from 'react-loader-spinner';
+import useFilterList from '../hooks/useFilterList';
 
 const MainPage = () => {
   const [searchOpened, setSearchOpened] = useState(false);
@@ -28,12 +29,13 @@ const MainPage = () => {
     [isLoading, hasMore]
   ); // 지금까지 불러온 마지막 상품의 ref
 
+  const filteredProducts = useFilterList(products, filters);
+
   return (
     <>
       <Header filters={filters} setFilters={setFilters} searchOpened={searchOpened} setSearchOpened={setSearchOpened} />
       <div
         css={css`
-          margin-top: ${searchOpened ? '170px' : '110px'};
           padding-top: 10px;
           background-color: ${colors.gray};
           display: grid;
@@ -41,8 +43,8 @@ const MainPage = () => {
           grid-auto-rows: minmax(340px, auto);
         `}
       >
-        {products.map((product, index) =>
-          index === products.length - 1 ? (
+        {filteredProducts.map((product, index) =>
+          index === filteredProducts.length - 1 ? (
             <Product ref={lastProductRef} key={product.goodsNo} {...product} />
           ) : (
             <Product key={product.goodsNo} {...product} />

@@ -11,11 +11,12 @@ const Header = ({ filters, setFilters, searchOpened, setSearchOpened }) => {
   return (
     <header
       css={css`
-        position: absolute;
+        position: sticky;
         left: 0%;
         right: 0%;
         top: 0%;
         background: #ffffff;
+        z-index: 10;
       `}
     >
       <h3
