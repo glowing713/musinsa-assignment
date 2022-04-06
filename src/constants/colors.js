@@ -8,6 +8,8 @@ const colors = {
   lightgray: '#F9F9F9',
   gray: '#eeeeee',
   darkgray: '#333d4b',
+  sale: '#FF0000',
+  exclusive: '#18A286',
 };
 
 export default colors;

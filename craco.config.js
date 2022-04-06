@@ -5,7 +5,7 @@ const pathAlias = Object.fromEntries(
     components: './src/components',
     pages: './src/pages',
     constants: './src/constants',
-    repository: './src/repository',
+    hooks: './src/hooks',
   }).map(([key, value]) => [key, path.resolve(__dirname, value)])
 );
 
