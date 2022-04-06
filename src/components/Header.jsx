@@ -39,7 +39,7 @@ const Header = ({ toggledBtns, setToggledBtns, searchOpened, setSearchOpened }) 
         `}
       >
         <Button
-          active={toggledBtns.indexOf(btnNames.search) < 0 ? undefined : true}
+          active={searchOpened ? true : undefined}
           onClick={e => {
             clickHandler(e, toggledBtns, setToggledBtns);
             setSearchOpened(!searchOpened);
