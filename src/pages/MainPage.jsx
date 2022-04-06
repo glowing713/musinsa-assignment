@@ -8,7 +8,7 @@ import { Oval } from 'react-loader-spinner';
 
 const MainPage = () => {
   const [searchOpened, setSearchOpened] = useState(false);
-  const [toggledBtns, setToggledBtns] = useState([]); // 활성화된 토글 버튼들
+  const [filters, setFilters] = useState([]); // 활성화된 토글 버튼들
 
   const [pageNumber, setPageNumber] = useState(0); // 상품 목록 페이지 번호(lazy loading)
   const { isLoading, products, hasMore } = useProductSearch(pageNumber);
@@ -30,12 +30,7 @@ const MainPage = () => {
 
   return (
     <>
-      <Header
-        toggledBtns={toggledBtns}
-        setToggledBtns={setToggledBtns}
-        searchOpened={searchOpened}
-        setSearchOpened={setSearchOpened}
-      />
+      <Header filters={filters} setFilters={setFilters} searchOpened={searchOpened} setSearchOpened={setSearchOpened} />
       <div
         css={css`
           margin-top: ${searchOpened ? '170px' : '110px'};

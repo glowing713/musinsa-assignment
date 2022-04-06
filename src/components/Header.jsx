@@ -4,7 +4,7 @@ import Input from 'components/Input';
 import colors from 'constants/colors';
 import { useState } from 'react';
 
-const Header = ({ toggledBtns, setToggledBtns, searchOpened, setSearchOpened }) => {
+const Header = ({ filters, setFilters, searchOpened, setSearchOpened }) => {
   const btnNames = { search: '검색 🔎', onSale: '세일상품', exclusive: '단독상품', soldOut: '품절포함' };
   const [searchKeyword, setSearchKeyword] = useState('');
 
@@ -41,31 +41,27 @@ const Header = ({ toggledBtns, setToggledBtns, searchOpened, setSearchOpened }) 
         <Button
           active={searchOpened ? true : undefined}
           onClick={e => {
-            clickHandler(e, toggledBtns, setToggledBtns);
+            clickHandler(e, filters, setFilters);
             setSearchOpened(!searchOpened);
           }}
         >
           {btnNames.search}
         </Button>
         <Button
-          active={toggledBtns.indexOf(btnNames.onSale) < 0 ? undefined : true}
-          onClick={e => {
-            clickHandler(e, toggledBtns, setToggledBtns);
-          }}
+          active={filters.indexOf(btnNames.onSale) < 0 ? undefined : true}
+          onClick={e => clickHandler(e, filters, setFilters)}
         >
           {btnNames.onSale}
         </Button>
         <Button
-          active={toggledBtns.indexOf(btnNames.exclusive) < 0 ? undefined : true}
-          onClick={e => {
-            clickHandler(e, toggledBtns, setToggledBtns);
-          }}
+          active={filters.indexOf(btnNames.exclusive) < 0 ? undefined : true}
+          onClick={e => clickHandler(e, filters, setFilters)}
         >
           {btnNames.exclusive}
         </Button>
         <Button
-          active={toggledBtns.indexOf(btnNames.soldOut) < 0 ? undefined : true}
-          onClick={e => clickHandler(e, toggledBtns, setToggledBtns)}
+          active={filters.indexOf(btnNames.soldOut) < 0 ? undefined : true}
+          onClick={e => clickHandler(e, filters, setFilters)}
         >
           {btnNames.soldOut}
         </Button>
@@ -85,7 +81,7 @@ const Header = ({ toggledBtns, setToggledBtns, searchOpened, setSearchOpened }) 
           placeholder={'🔎  상품명 검색'}
           value={searchKeyword}
           onChange={e => setSearchKeyword(e.target.value)}
-          onKeyDown={e => addSearchKeyword(e, toggledBtns, setToggledBtns, setSearchOpened, setSearchKeyword)}
+          onKeyDown={e => addSearchKeyword(e, filters, setFilters, setSearchOpened, setSearchKeyword)}
           css={css`
             border: 1px solid;
             border-color: ${colors.gray};
@@ -101,24 +97,24 @@ const Header = ({ toggledBtns, setToggledBtns, searchOpened, setSearchOpened }) 
 
 const SearchBar = props => <Input {...props} />;
 
-const clickHandler = (event, toggledBtns, setToggledBtns) => {
+const clickHandler = (event, filters, setFilters) => {
   // Button 컴포넌트에서 prop을 핸들링하기 위한 함수
   const btnId = event.target.textContent;
-  const index = toggledBtns.indexOf(btnId);
-  const newState = [...toggledBtns];
+  const index = filters.indexOf(btnId);
+  const newState = [...filters];
 
   if (index >= 0) newState.splice(index, 1); // 해당 버튼이 토글 리스트에 있다면 제거
   if (btnId !== '검색 🔎' && index < 0) newState.push(btnId); // 해당 버튼이 토글 리스트에 없다면 새로 추가
 
-  setToggledBtns(newState);
+  setFilters(newState);
 };
 
-const addSearchKeyword = (event, toggledBtns, setToggledBtns, setSearchOpened, setSearchKeyword) => {
+const addSearchKeyword = (event, filters, setFilters, setSearchOpened, setSearchKeyword) => {
   const inputStr = event.target.value.trim();
   const pressedKey = event.key;
   if (inputStr && pressedKey === 'Enter') {
     // 엔터를 누르면 필터 목록에 추가되고, 입력창이 비워지고 사라진다.
-    setToggledBtns([...toggledBtns, inputStr]);
+    setFilters([...filters, inputStr]);
     setSearchKeyword('');
     setSearchOpened(false);
   }
