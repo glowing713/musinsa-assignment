@@ -6,11 +6,14 @@ export default function useSearchSuggestion(products, searchKeyword) {
   useEffect(() => {
     setSuggestions([]);
 
-    products.forEach(({ goodsName, brandName }) => {
-      if (goodsName.includes(searchKeyword) || brandName.includes(searchKeyword)) {
-        setSuggestions(prevSug => [...prevSug, [goodsName, brandName]]);
-      }
-    });
+    if (searchKeyword === '') setSuggestions([]);
+    else {
+      products.forEach(({ goodsName, brandName }) => {
+        if (goodsName.includes(searchKeyword) || brandName.includes(searchKeyword)) {
+          setSuggestions(prevSug => [...prevSug, [goodsName, brandName]]);
+        }
+      });
+    }
   }, [products, searchKeyword]);
 
   return suggestions;

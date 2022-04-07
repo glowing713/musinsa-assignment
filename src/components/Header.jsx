@@ -2,7 +2,6 @@ import { css } from '@emotion/react';
 import Button from 'components/Button';
 import Input from 'components/Input';
 import colors from 'constants/colors';
-import { useEffect } from 'react';
 
 const Header = ({
   filters,
@@ -79,6 +78,7 @@ const Header = ({
         css={css`
           background-color: ${colors.gray};
           display: ${searchOpened ? 'flex' : 'none'};
+          flex-direction: column;
           align-items: center;
           justify-contents: center;
           height: 70px;
@@ -99,6 +99,47 @@ const Header = ({
             height: 22px;
           `}
         />
+        <div
+          css={css`
+            background-color: white;
+            width: 100%;
+          `}
+        >
+          {searchSuggestion.map(([goods, brand]) => (
+            <div
+              css={css`
+                display: flex;
+                flex-direction: column;
+                align-items: left;
+                background-color: ${colors.white};
+                font-size: 13px;
+                margin-bottom: 5px;
+                border: 1px solid ${colors.gray};
+              `}
+              onClick={e => {
+                setFilters(prev => [...prev, goods]);
+                setSearchOpened(false);
+              }}
+            >
+              <p
+                css={css`
+                  margin: 0;
+                  font-size: 11px;
+                  color: ${colors.darkgray};
+                `}
+              >
+                {brand}
+              </p>
+              <p
+                css={css`
+                  margin: 0;
+                `}
+              >
+                {goods}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
       <div
         css={css`
