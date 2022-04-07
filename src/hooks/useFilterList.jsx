@@ -4,22 +4,21 @@ export default function useFilterList(products, filters) {
   const [result, setResult] = useState([]);
 
   useEffect(() => {
-    setResult([]);
-    products.forEach(product => {
-      let isValid = true;
-      // if (product.isSoldOut && filters.indexOf('품절포함' < 0)) return;
-      if (!product.isSale && filters.indexOf('세일상품') >= 0) return;
-      if (!product.isExclusive && filters.indexOf('단독상품') >= 0) return;
-      for (const filter of filters) {
-        if (filter === '품절포함' || filter === '세일상품' || filter === '단독상품') continue;
-        if (!product.goodsName.includes(filter) && !product.brandName.includes(filter)) {
-          isValid = false;
-          break;
+    setResult([
+      ...products.filter(product => {
+        let valid = true;
+        if (filters.indexOf('품절포함') >= 0) valid = true;
+        if (filters.indexOf('품절포함') < 0) valid = !product.isSoldOut;
+        if (filters.indexOf('단독상품') >= 0) valid = product.isExclusive;
+        if (filters.indexOf('세일상품') >= 0) valid = product.isSale;
+        for (const filter of filters) {
+          if (filter === '품절포함' || filter === '단독상품' || filter === '세일상품') continue;
+          if (product.goodsName.includes(filter) || product.brandName.includes(filter)) valid = true;
+          else valid = false;
         }
-      }
-
-      if (isValid) setResult(prevArr => [...prevArr, product]);
-    });
+        return valid;
+      }),
+    ]);
   }, [products, filters]);
 
   return result;
