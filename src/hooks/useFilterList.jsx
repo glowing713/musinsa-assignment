@@ -6,9 +6,9 @@ export default function useFilterList(products, filters) {
   useEffect(() => {
     setResult([
       ...products.filter(product => {
+        if (filters.indexOf('품절포함') < 0 && product.isSoldOut) return false;
         let valid = true;
         if (filters.indexOf('품절포함') >= 0) valid = true;
-        if (filters.indexOf('품절포함') < 0) valid = !product.isSoldOut;
         if (filters.indexOf('단독상품') >= 0) valid = product.isExclusive;
         if (filters.indexOf('세일상품') >= 0) valid = product.isSale;
         for (const filter of filters) {
