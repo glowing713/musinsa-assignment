@@ -2,11 +2,10 @@ import { css } from '@emotion/react';
 import Button from 'components/Button';
 import Input from 'components/Input';
 import colors from 'constants/colors';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
-const Header = ({ filters, setFilters, searchOpened, setSearchOpened }) => {
+const Header = ({ filters, searchKeyword, setSearchKeyword, setFilters, searchOpened, setSearchOpened }) => {
   const btnNames = { search: '검색 🔎', onSale: '세일상품', exclusive: '단독상품', soldOut: '품절포함' };
-  const [searchKeyword, setSearchKeyword] = useState('');
 
   useEffect(() => {
     console.log(filters);
@@ -48,6 +47,7 @@ const Header = ({ filters, setFilters, searchOpened, setSearchOpened }) => {
           onClick={e => {
             clickHandler(e, setFilters);
             setSearchOpened(!searchOpened);
+            if (!searchOpened) setSearchKeyword(''); // 검색창을 열때에는 키워드가 빈 상태여야한다
           }}
         >
           {btnNames.search}
