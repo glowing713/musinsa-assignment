@@ -4,12 +4,16 @@ import Input from 'components/Input';
 import colors from 'constants/colors';
 import { useEffect } from 'react';
 
-const Header = ({ filters, searchKeyword, setSearchKeyword, setFilters, searchOpened, setSearchOpened }) => {
+const Header = ({
+  filters,
+  searchKeyword,
+  setSearchKeyword,
+  setFilters,
+  searchOpened,
+  setSearchOpened,
+  searchSuggestion,
+}) => {
   const btnNames = { search: '검색 🔎', onSale: '세일상품', exclusive: '단독상품', soldOut: '품절포함' };
-
-  useEffect(() => {
-    console.log(filters);
-  }, [filters]);
 
   return (
     <header

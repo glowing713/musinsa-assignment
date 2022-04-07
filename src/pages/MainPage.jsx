@@ -4,11 +4,13 @@ import { css } from '@emotion/react';
 import colors from 'constants/colors';
 import { useCallback, useRef, useState } from 'react';
 import useProductSearch from 'hooks/useProductSearch';
+import useFilterList from 'hooks/useFilterList';
+import useSearchSuggestion from 'hooks/useSearchSuggestion';
 import { Oval } from 'react-loader-spinner';
-import useFilterList from '../hooks/useFilterList';
 
 const MainPage = () => {
-  const [searchOpened, setSearchOpened] = useState(false);
+  const [searchOpened, setSearchOpened] = useState(false); // 검색창 열림 유무
+  const [searchKeyword, setSearchKeyword] = useState(''); // 검색창 입력어
   const [filters, setFilters] = useState([]); // 활성화된 토글 버튼들
 
   const [pageNumber, setPageNumber] = useState(0); // 상품 목록 페이지 번호(lazy loading)
@@ -29,11 +31,20 @@ const MainPage = () => {
     [isLoading, hasMore]
   ); // 지금까지 불러온 마지막 상품의 ref
 
-  const filteredProducts = useFilterList(products, filters);
+  const filteredProducts = useFilterList(products, filters); // 등록된 필터를 기준으로 추려낸 상품 목록
+  const searchSuggestion = useSearchSuggestion(filteredProducts, searchKeyword); // 검색어 입력에 따른 자동완성 목록
 
   return (
     <>
-      <Header filters={filters} setFilters={setFilters} searchOpened={searchOpened} setSearchOpened={setSearchOpened} />
+      <Header
+        filters={filters}
+        setFilters={setFilters}
+        searchOpened={searchOpened}
+        setSearchOpened={setSearchOpened}
+        searchKeyword={searchKeyword}
+        setSearchKeyword={setSearchKeyword}
+        searchSuggestion={searchSuggestion}
+      />
       <div
         css={css`
           padding-top: 10px;
