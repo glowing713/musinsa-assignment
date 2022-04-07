@@ -51,9 +51,35 @@ const Product = forwardRef(
             `}
             onError={e => (e.target.src = altImage)}
           />
+          <div
+            css={css`
+              display: ${isSoldOut ? 'flex;' : 'none;'}
+              align-items: center;
+              justify-content: center;
+              position: absolute;
+              left: 0%;
+              right: 0%;
+              top: 0%;
+              bottom: 0%;
+              background: #ffffff;
+              mix-blend-mode: normal;
+              opacity: 0.8;
+              z-index: 6;
+            `}
+          >
+            <span
+              css={css`
+                color: #777777;
+                font-weight: 400;
+                font-size: 17px;
+              `}
+            >
+              SOLD OUT
+            </span>
+          </div>
           <p
             css={css`
-              display: ${isExclusive ? 'block' : 'none'};
+              display: ${isExclusive ? 'block;' : 'none;'};
               background-color: ${colors.exclusive};
               color: ${colors.white};
               font-size: 13px;
@@ -120,7 +146,7 @@ const Product = forwardRef(
             >{`${price.toLocaleString()}원`}</span>
             <span
               css={css`
-                display: ${isSale ? 'inline-block' : 'none'};
+                display: ${isSale ? 'inline-block;' : 'none;'};
                 margin-right: 6px;
                 font-weight: 800;
                 font-size: 14px;
@@ -132,7 +158,7 @@ const Product = forwardRef(
           </p>
           <p
             css={css`
-              display: ${isSale ? 'inline-block' : 'none'};
+              display: ${isSale ? 'inline-block;' : 'none;'};
               margin: 0;
               padding-bottom: 30px;
               word-break: break-all;
